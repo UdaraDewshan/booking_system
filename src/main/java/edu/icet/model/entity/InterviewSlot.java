@@ -12,12 +12,17 @@ public class InterviewSlot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String interviewerName;
+    @ManyToOne
+    @JoinColumn(name = "interviewer_id", nullable = false)
+    private Interviewer interviewer;
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    // Status: AVAILABLE, BOOKED
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private SlotStatus status;
+}
 
+enum SlotStatus {
+    AVAILABLE, BOOKED, CANCELLED
 }

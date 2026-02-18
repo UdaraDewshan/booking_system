@@ -12,11 +12,12 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String candidateName;
-    private String candidateEmail;
+    @ManyToOne
+    @JoinColumn(name = "candidate_id", nullable = false)
+    private Candidate candidate;
 
     private LocalDateTime bookedAt;
-
+    
     @OneToOne
     @JoinColumn(name = "slot_id", referencedColumnName = "id")
     private InterviewSlot interviewSlot;
