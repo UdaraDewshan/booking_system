@@ -1,7 +1,7 @@
 package edu.icet.controller;
 
 import edu.icet.model.dto.CandidateDTO;
-import edu.icet.service.CandidateService;
+import edu.icet.service.impl.CandidateServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin
 public class CandidateController {
 
-    final private CandidateService candidateService;
+    final private CandidateServiceImpl candidateService;
 
     @PostMapping("/add")
     public ResponseEntity<CandidateDTO> addCandidate(@RequestBody CandidateDTO candidateDTO){
