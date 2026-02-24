@@ -12,13 +12,13 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "interview_slot_id")
+    private Interviewer interviewer;
+
     @ManyToOne
-    @JoinColumn(name = "candidate_id", nullable = false)
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    private LocalDateTime bookedAt;
-    
-    @OneToOne
-    @JoinColumn(name = "slot_id", referencedColumnName = "id")
-    private InterviewSlot interviewSlot;
+    private LocalDateTime bookingTime;
 }

@@ -2,6 +2,7 @@ package edu.icet.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,16 +14,12 @@ public class InterviewSlot {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "interviewer_id", nullable = false)
+    @JoinColumn(name = "interviewer_id")
     private Interviewer interviewer;
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    @Enumerated(EnumType.STRING)
-    private SlotStatus status;
-}
+    private boolean isAvailable = true;
 
-enum SlotStatus {
-    AVAILABLE, BOOKED, CANCELLED
 }

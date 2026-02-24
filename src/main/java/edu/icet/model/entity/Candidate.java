@@ -15,7 +15,7 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userName;
+    private String name;
     private String email;
     private String contactNo;
 }
