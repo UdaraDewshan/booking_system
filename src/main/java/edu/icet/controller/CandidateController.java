@@ -27,6 +27,4 @@ public class CandidateController {
         return ResponseEntity.ok(candidateService.getAllCandidates());
     }
 
-
-
 }
