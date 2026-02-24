@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CandidateServise {
+public class CandidateService {
     public CandidateDTO addCandidate(CandidateDTO candidateDTO) {
         return null;
     }
