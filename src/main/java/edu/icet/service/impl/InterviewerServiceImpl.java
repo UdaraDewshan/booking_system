@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -31,6 +32,12 @@ public class InterviewerServiceImpl implements InterviewerService {
 
     @Override
     public List<InterviewerDTO> getAllInterviewers() {
-        return List.of();
+        List<Interviewer> interviewers = interviewerRepository.findAll();
+
+        return interviewers.stream().map(interviewer -> {
+            InterviewerDTO dto = new InterviewerDTO();
+            BeanUtils.copyProperties(interviewer, dto);
+            return dto;
+        }).collect(Collectors.toList());
     }
 }
