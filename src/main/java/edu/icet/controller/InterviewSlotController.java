@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/slot")
@@ -20,5 +22,10 @@ public class InterviewSlotController {
     public ResponseEntity<String> addSlot(@RequestBody InterviewSlotDTO request){
         interviewSlotService.addSlot(request);
         return ResponseEntity.ok("Slot added successfully");
+    }
+
+    @GetMapping("available")
+    public ResponseEntity<List<InterviewSlotDTO>> getAvailableSlots(){
+        return ResponseEntity.ok(interviewSlotService.getAvailbleSlots());
     }
 }
