@@ -7,9 +7,11 @@ import edu.icet.repository.IntertviewerRepository;
 import edu.icet.repository.InterviewSlotRepository;
 import edu.icet.service.InterviewSlotService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class InterviewSlotServiceImpl implements InterviewSlotService {
@@ -38,6 +40,20 @@ public class InterviewSlotServiceImpl implements InterviewSlotService {
 
     @Override
     public List<InterviewSlotDTO> getAvailbleSlots() {
-        return List.of();
+
+        List<InterviewSlot> availableSlots = interviewSlotRepository.findByIsAvailableTrueAndStartTimeAfter(LocalDateTime.now());
+
+
+        return availableSlots.stream().map(slot -> {
+            InterviewSlotDTO dto = new InterviewSlotDTO();
+            BeanUtils.copyProperties(slot, dto);
+
+            dto.setSlotId(slot.getId());
+            dto.setInterviewerId(slot.getInterviewer().getId());
+            dto.setInterviewerName(slot.getInterviewer().getName());
+            dto.setStatus("AVAILABLE");
+
+            return dto;
+        }).collect(Collectors.toList());
     }
 }
