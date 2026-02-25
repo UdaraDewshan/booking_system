@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public class BookingDTO {
     private Long bookingId;
     private Long slotId;
+    private Long candidateId;
     private String candidateName;
     private String interviewerName;
     private LocalDateTime startTime;

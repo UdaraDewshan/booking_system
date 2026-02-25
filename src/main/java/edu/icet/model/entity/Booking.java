@@ -14,7 +14,7 @@ public class Booking {
 
     @OneToOne
     @JoinColumn(name = "interview_slot_id")
-    private Interviewer interviewer;
+    private InterviewSlot interviewSlot;
 
     @ManyToOne
     @JoinColumn(name = "candidate_id")
