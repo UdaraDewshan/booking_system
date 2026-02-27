@@ -7,4 +7,5 @@ public interface InterviewSlotService {
     void addSlot(InterviewSlotDTO request);
     List<InterviewSlotDTO> getAvailbleSlots();
 
+    List<InterviewSlotDTO> getBookedSlots();
 }

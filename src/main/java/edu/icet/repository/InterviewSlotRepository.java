@@ -10,5 +10,5 @@ public interface InterviewSlotRepository extends JpaRepository<InterviewSlot,Lon
 
     List<InterviewSlot> findByIsAvailableTrueAndStartTimeAfter(LocalDateTime currentTime);
 
-    List<InterviewSlot> findByInterviewerIdAndIsAvailableTrueAndStartTimeAfter(Long interviewerId, LocalDateTime currentTime);
+    List<InterviewSlot> findByIsAvailableFalse();
 }

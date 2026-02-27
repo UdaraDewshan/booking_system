@@ -28,4 +28,10 @@ public class InterviewSlotController {
     public ResponseEntity<List<InterviewSlotDTO>> getAvailableSlots(){
         return ResponseEntity.ok(interviewSlotService.getAvailbleSlots());
     }
+
+    @GetMapping("/booked")
+    public ResponseEntity<List<InterviewSlotDTO>> getBookedSlots() {
+        List<InterviewSlotDTO> bookedSlots = interviewSlotService.getBookedSlots();
+        return ResponseEntity.ok(bookedSlots);
+    }
 }

@@ -8,12 +8,15 @@ import edu.icet.repository.InterviewSlotRepository;
 import edu.icet.service.InterviewSlotService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Service
 public class InterviewSlotServiceImpl implements InterviewSlotService {
 
     private final InterviewSlotRepository interviewSlotRepository;
@@ -55,5 +58,33 @@ public class InterviewSlotServiceImpl implements InterviewSlotService {
 
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<InterviewSlotDTO> getBookedSlots() {
+        List<InterviewSlot> bookedSlots = interviewSlotRepository.findByIsAvailableFalse();
+
+
+        List<InterviewSlotDTO> dtoList = new ArrayList<>();
+        for (InterviewSlot slot : bookedSlots) {
+            InterviewSlotDTO dto = new InterviewSlotDTO();
+
+            dto.setSlotId(slot.getId());
+
+            if (slot.getInterviewer() != null) {
+                dto.setInterviewerId(slot.getInterviewer().getId());
+                dto.setInterviewerName(slot.getInterviewer().getName());
+            } else {
+                dto.setInterviewerName("Unknown");
+            }
+
+            dto.setStartTime(slot.getStartTime());
+            dto.setEndTime(slot.getEndTime());
+            dto.setAvailable(slot.isAvailable());
+
+            dto.setStatus("BOOKED");
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }
