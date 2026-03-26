@@ -26,5 +26,4 @@ public class InterviewController {
     public ResponseEntity<List<InterviewerDTO>> getAllInterviewers(){
         return ResponseEntity.ok(interviewerService.getAllInterviewers());
     }
-
 }
